@@ -1,0 +1,36 @@
+name: pause_reflect
+description: "Pause and reflect before opening AI apps. Adds intentional friction so you reflect instead of reflexively opening AI apps. All data stays local."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Local event database (source of truth for stats). drift runs on the Dart VM
+  # via NativeDatabase, which makes aggregation unit-testable without a device.
+  drift: ^2.20.0
+  sqlite3_flutter_libs: ^0.5.24   # bundles libsqlite3 on Android/iOS
+  sqlite3: ^2.4.6                  # used by drift's NativeDatabase (and VM tests)
+
+  # Settings + grace timestamps shared with the native AccessibilityService.
+  shared_preferences: ^2.3.2
+
+  path: ^1.9.0
+  path_provider: ^2.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  drift_dev: ^2.20.0
+  build_runner: ^2.4.13
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/prompts.json

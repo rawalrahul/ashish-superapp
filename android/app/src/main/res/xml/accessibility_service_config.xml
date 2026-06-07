@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Detects window-state changes only. We deliberately do NOT retrieve window
+  content (canRetrieveWindowContent=false) — package name from the event is all
+  we need, which keeps the privacy footprint minimal and eases Play review.
+  Filtering to watched apps is done in code (the watched list is user config).
+-->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeWindowStateChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:canRetrieveWindowContent="false"
+    android:description="@string/accessibility_service_description"
+    android:notificationTimeout="100" />

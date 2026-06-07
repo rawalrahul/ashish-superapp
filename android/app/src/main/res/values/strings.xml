@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pause &amp; Reflect</string>
+    <string name="accessibility_service_description">Detects when you open the AI apps you chose to watch, and shows a brief pause-and-reflect screen first. It only reads which app opened — no screen content is collected, and all data stays on your device.</string>
+</resources>
