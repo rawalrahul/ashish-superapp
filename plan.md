@@ -173,6 +173,27 @@ Sources: [Apple Developer Program ($99/yr)](https://developer.apple.com/support/
 [Requesting Family Controls entitlement](https://developer.apple.com/documentation/familycontrols/requesting-the-family-controls-entitlement),
 [ShieldAction can't open app (Apple forum)](https://developer.apple.com/forums/thread/719905).
 
+## Validation & v1 implementation status (2026-06-07)
+
+Plan validated against current sources and implemented. Two corrections were folded in during
+implementation:
+
+1. **Watched list stored as a JSON string**, not `setStringList` — the `shared_preferences` list
+   encoding is awkward to parse from Kotlin. See `SettingsStore.kWatchedPackagesJson` and the
+   `JSONArray` read in `AppInterceptAccessibilityService.kt`.
+2. **The a11y service runs in the default process** (no `android:process`) so it shares the
+   `FlutterSharedPreferences` cache with the app.
+
+Resolved package names: Claude `com.anthropic.claude`, Gemini `com.google.android.apps.bard`
+(both confirmed). Background-Activity-start note refined: a bound AccessibilityService is itself
+exempt; `SYSTEM_ALERT_WINDOW` is kept as a reliable fallback.
+
+**Status:** Dart feature set + Android native + iOS stub implemented. `flutter analyze` clean and
+16 unit/widget tests pass (prompt rotation, grace policy, stats aggregation, pause-screen
+countdown/outcomes/back-out). **Not yet done:** `flutter build apk` and the on-device a11y test —
+the Android SDK / Google Maven hosts are blocked by this environment's network policy, so these
+must be run on a machine with normal network + a real device.
+
 ## Build order
 
 1. Scaffold the Flutter app (`flutter create`, set org id, Android `minSdk ~24`).
